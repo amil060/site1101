@@ -13,7 +13,7 @@
   --font-size-base: 17px;
   --line-height-base: 1.6;
 
-  --color-bg: #fafafa;
+  --color-bg: #f6f8fb;
   --color-surface: #ffffff;
   --color-text: #0f1720;
   --color-paragraph: #374151;
@@ -66,7 +66,7 @@ p, .text-muted{color:var(--color-paragraph)}
 .control:focus{outline:3px solid rgba(1,102,255,0.12);outline-offset:3px}
 .control--icon{width:40px;min-width:40px;justify-content:center;padding:6px;border-radius:10px}
 .control--link{padding:8px 12px}
-.control-group{background:transparent;padding:4px;border-radius:12px;display:inline-flex;gap:6px}
+.control-group{background:transparent;padding:4px;border-radius:12px;display:inline-flex;gap:6px;border:1px solid rgba(0,0,0,0.04);box-shadow:0 6px 20px rgba(12,14,18,0.03)}
 .control + .control{margin-left:4px}
 .btn{padding:8px 12px;border-radius:10px;border:0;background:var(--color-accent);color:white;text-decoration:none}
 .btn--ghost{background:transparent;color:var(--color-text);border:1px solid rgba(0,0,0,0.06)}
@@ -114,8 +114,7 @@ body, .page-bg{line-height:1.7;background-color:var(--color-bg);background-image
   background-attachment:fixed;background-repeat:no-repeat;background-size:cover}
 
 /* subtle noise overlay using a small SVG turbulence filter via data URL */
-body::before, .page-bg::before{content:'';position:fixed;inset:0;pointer-events:none;opacity:0.06;z-index:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'><filter id='noise'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23noise)' fill='black' opacity='0.06'/></svg>");background-repeat:repeat;background-size:contain;mix-blend-mode:overlay}
-
+body::before, .page-bg::before{content:'';position:fixed;inset:0;pointer-events:none;opacity:0.045;z-index:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'><filter id='noise'><feTurbulence baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23noise)' fill='black' opacity='0.04'/></svg>");background-repeat:repeat;background-size:contain;mix-blend-mode:overlay}
 /* Dark mode: intentional deep blue/gray surface */
 :root[data-theme='dark'] body, :root[data-theme='dark'] .page-bg{background-image:linear-gradient(180deg,#041124 0%, #051423 60%);}
 
@@ -222,8 +221,12 @@ a:hover{text-decoration:underline}
 .btn:focus{outline:3px solid rgba(1,102,255,0.14);outline-offset:3px}
 
 /* Page container and sections */
-.main{padding:calc(var(--space-4) * 0.6) 0}
-.section{padding-block:clamp(56px,6vw,80px)}
+.main{padding:calc(var(--space-3) * 1.1) 0}
+/* Slightly tighter, consistent section spacing to reduce empty white space */
+.section{padding-block:clamp(48px,5.5vw,72px)}
+
+/* Slightly increase max-content width for better desktop breathing */
+.container{max-width:1200px}
 
 /* Hero tweaks */
 .hero{display:grid;grid-template-columns:1fr 360px;gap:1.8rem;align-items:center}
@@ -234,7 +237,11 @@ a:hover{text-decoration:underline}
 .btn--primary{background:linear-gradient(90deg,var(--color-accent),var(--color-accent-2));box-shadow:var(--elev-1);color:white}
 .btn--secondary{background:transparent;border:1px solid rgba(0,0,0,0.06)}
 .profile__img{display:flex;align-items:center;justify-content:center;background:transparent;padding:6px;border-radius:999px}
-.profile__photo{width:320px;height:320px;border-radius:999px;object-fit:cover;display:block;border:4px solid rgba(15,23,32,0.04);box-shadow:var(--elev-1);background:var(--color-surface)}
+.profile__photo{width:320px;height:320px;border-radius:999px;object-fit:cover;display:block;border:3px solid rgba(15,23,32,0.04);box-shadow:0 18px 60px rgba(12,14,18,0.10);background:var(--color-surface)}
+@media (min-width:1200px){
+  .hero{grid-template-columns:1fr 420px}
+  .profile__photo{width:380px;height:380px}
+}
 @media (prefers-color-scheme: dark){
   .profile__photo{border:4px solid rgba(255,255,255,0.04)}
 }
@@ -340,9 +347,19 @@ a:hover{text-decoration:underline}
   *{transition:none !important}
 }
 
-/* Reveal animation */
+/* Reveal animation - legacy */
 .is-reveal{opacity:0;transform:translateY(20px);transition:opacity .45s ease, transform .45s ease}
 .is-reveal.is-revealed{opacity:1;transform:none}
+
+/* Reveal animation - new */
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease, transform .6s cubic-bezier(.2,.6,.2,1);will-change:opacity,transform}
+.reveal.revealed{opacity:1;transform:none}
+
+/* Micro-interactions: buttons and surfaces (hover lift) */
+.surface, .card, .featured-card, .project-card{transition:transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s ease}
+.surface:hover, .card:hover, .featured-card:hover, .project-card:hover{transform:translateY(-3px);box-shadow:0 22px 72px rgba(12,14,18,0.14)}
+.btn{transition:transform .12s ease, box-shadow .12s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--elev-1)}
 
 /* Utilities */
 .text-muted{color:var(--color-muted)}
