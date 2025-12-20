@@ -103,13 +103,10 @@ document.addEventListener('DOMContentLoaded', function () {
       });
       panels.forEach(p => {
         const panelId = tab.getAttribute('aria-controls');
-        if (p.id === panelId) {
-          p.hidden = false;
-          p.classList.add('is-visible');
-        } else {
-          p.hidden = true;
-          p.classList.remove('is-visible');
-        }
+        const shouldShow = p.id === panelId;
+        p.hidden = !shouldShow;
+        p.setAttribute('aria-hidden', (!shouldShow).toString());
+        if (shouldShow) p.classList.add('is-visible'); else p.classList.remove('is-visible');
       });
       tab.focus();
     }

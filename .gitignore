@@ -1,0 +1,8 @@
+# Prevent nested repos
+site1101/site1101/
+
+# Large media (do not track)
+assets/images/Project 2 Hour of Code/
+*.mp4
+*.MOV
+*.HEIC

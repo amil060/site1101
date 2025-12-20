@@ -6,7 +6,13 @@ title: Home
 <section class="hero">
   <div class="profile is-reveal">
     <h1 class="profile__title">Hi — I’m Amil Isgandarov</h1>
-    <p class="profile__bio">A tech student building thoughtful, accessible interfaces. I focus on web performance, clean design, and delightful micro-interactions.</p>
+    <p class="profile__subtitle">ADA University CS student • Cybersecurity &amp; AI</p>
+
+    <div class="profile__badges">
+      <span class="badge">ICPC Volunteer</span>
+      <span class="badge">ABB Hackathon</span>
+      <span class="badge">SOCAR Hackathon (4th place)</span>
+    </div>
 
     <div class="cta">
       <a class="btn" href="{{ site.baseurl }}/projects/">View projects</a>
@@ -15,6 +21,6 @@ title: Home
   </div>
 
   <div class="profile__img is-reveal" aria-hidden="true">
-    <img src="{{ site.baseurl }}/assets/images/profile-placeholder.svg" alt="Profile placeholder" style="width:100%;height:100%;object-fit:cover;border-radius:12px;"/>
+    <img class="profile__photo" src="{{ site.baseurl }}/assets/images/profile-placeholder.svg" alt="Profile photo placeholder" />
   </div>
 </section>
