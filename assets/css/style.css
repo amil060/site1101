@@ -60,8 +60,9 @@ p, .text-muted{color:var(--color-paragraph)}
 .nav__link.is-active{color:var(--color-accent);font-weight:600} 
 
 .header-actions{display:flex;align-items:center;gap:var(--space-2)}
-.control-group{display:flex;align-items:center;gap:0.5rem}
-.control{display:inline-flex;align-items:center;gap:0.5rem;height:40px;padding:6px 12px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);background:transparent;color:var(--color-text);font-weight:600;text-decoration:none}
+.control-group{display:flex;align-items:center;gap:0.5rem;background:transparent}
+.control{display:inline-flex;align-items:center;gap:0.5rem;height:40px;padding:6px 12px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);background:var(--color-surface);color:var(--color-text);font-weight:600;text-decoration:none;box-shadow:0 6px 20px rgba(12,14,18,0.04)}
+.control:hover{transform:translateY(-1px)}
 .control:focus{outline:3px solid rgba(1,102,255,0.12);outline-offset:3px}
 .control--icon{width:40px;min-width:40px;justify-content:center;padding:6px;border-radius:10px}
 .control--link{padding:8px 12px}
@@ -69,13 +70,26 @@ p, .text-muted{color:var(--color-paragraph)}
 .btn--ghost{background:transparent;color:var(--color-text);border:1px solid rgba(0,0,0,0.06)}
 .btn--icon{background:transparent;font-size:1.1rem;border:0}
 
+/* Dark mode control adjustments */
+:root[data-theme='dark'] .control{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+
 /* Featured content and page rhythm */
 .section{padding-block:clamp(56px,6vw,80px)}
 .about-preview .container{padding-top:var(--space-2)}
-.featured-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-2);margin-top:var(--space-2)}
-.featured-card{display:flex;gap:var(--space-2);align-items:flex-start;background:var(--color-surface);padding:var(--space-2);border-radius:var(--radius);box-shadow:var(--elev-1);border:1px solid rgba(0,0,0,0.04)}
-.thumb-small{width:84px;height:64px;object-fit:cover;border-radius:8px;border:1px solid rgba(0,0,0,0.04)}
-.featured-card__body h3{margin:0 0 var(--space-1) 0}
+.surface{background:var(--color-surface);border-radius:var(--radius);border:1px solid rgba(0,0,0,0.04);box-shadow:var(--elev-1);padding:var(--space-3)}
+
+.featured-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-3);margin-top:var(--space-2)}
+.featured-card{display:flex;flex-direction:column;align-items:stretch;background:transparent;padding:0;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(0,0,0,0.04);box-shadow:0 8px 30px rgba(12,14,18,0.06)}
+.featured-thumb-wrap{width:100%;overflow:hidden}
+.featured-thumb{display:block;width:100%;height:160px;object-fit:cover;border-bottom:1px solid rgba(0,0,0,0.04)}
+.featured-card__body{padding:var(--space-3)}
+.featured-card h3{margin:0 0 var(--space-1) 0}
+.featured-card p{margin:0 0 var(--space-2)}
+
+@media (max-width:900px){
+  .featured-grid{grid-template-columns:1fr}
+  .featured-thumb{height:140px}
+} 
 .cta-strip{background:linear-gradient(90deg, rgba(0,0,0,0.02), rgba(255,255,255,0.01));padding:var(--space-2);border-radius:10px;margin-top:var(--space-3);border:1px solid rgba(0,0,0,0.03)}
 .cta-strip__inner{display:flex;justify-content:space-between;align-items:center;gap:var(--space-2)}
 
@@ -85,11 +99,22 @@ p, .text-muted{color:var(--color-paragraph)}
 .project__media__fallback[aria-hidden="true"]{display:none}
 .project__media__img{width:100%;height:100%;max-height:240px;border-radius:var(--radius-sm);object-fit:cover;border:1px solid rgba(0,0,0,0.05);box-shadow:var(--shadow)}
 
-/* Subtle background & improved rhythm */
-body{line-height:1.7;background-image:radial-gradient(ellipse at top left, rgba(6,30,60,0.02) 0%, rgba(0,0,0,0) 20%), radial-gradient(ellipse at bottom right, rgba(120,0,200,0.02) 0%, rgba(0,0,0,0) 20%)}
+/* Page background — subtle premium gradient with radial glows */
+body, .page-bg{line-height:1.7;background-color:var(--color-bg);background-image:
+  linear-gradient(180deg, rgba(255,255,255,0.9), rgba(248,249,252,0.95)),
+  radial-gradient(circle at 10% 10%, rgba(123,107,255,0.04), transparent 12%),
+  radial-gradient(circle at 90% 90%, rgba(0,102,255,0.03), transparent 10%);
+  background-attachment:fixed;background-repeat:no-repeat;background-size:cover}
+
+/* subtle noise overlay using a thin repeating gradient — CSS-only */
+body::after, .page-bg::after{content:'';position:fixed;inset:0;pointer-events:none;opacity:0.12;background-image:repeating-linear-gradient(45deg, rgba(0,0,0,0.025) 0 1px, transparent 1px 6px);mix-blend-mode:overlay}
+
+/* Dark mode: intentional deep blue/gray surface */
+:root[data-theme='dark'] body, :root[data-theme='dark'] .page-bg{background-image:linear-gradient(180deg,#041124 0%, #051423 60%);}
+
 @media (prefers-color-scheme: dark){
-  body{background-image:none}
-}
+  body::after{opacity:0.06}
+} 
 
 /* Dark mode tweaks */
 :root[data-theme='dark']{--elev-1: 0 10px 36px rgba(0,0,0,0.6);--radius:14px}
@@ -195,8 +220,11 @@ a:hover{text-decoration:underline}
 .cta{display:flex;gap:var(--space-2);margin-top:var(--space-3)}
 .btn--primary{background:linear-gradient(90deg,var(--color-accent),var(--color-accent-2));box-shadow:var(--elev-1);color:white}
 .btn--secondary{background:transparent;border:1px solid rgba(0,0,0,0.06)}
-.profile__img{display:flex;align-items:center;justify-content:center}
-.profile__photo{width:320px;height:320px;border-radius:999px;object-fit:cover;display:block;border:6px solid rgba(255,255,255,0.7);box-shadow:0 20px 60px rgba(12,14,18,0.12)}
+.profile__img{display:flex;align-items:center;justify-content:center;background:transparent;padding:6px;border-radius:999px}
+.profile__photo{width:320px;height:320px;border-radius:999px;object-fit:cover;display:block;border:4px solid rgba(15,23,32,0.04);box-shadow:var(--elev-1);background:var(--color-surface)}
+@media (prefers-color-scheme: dark){
+  .profile__photo{border:4px solid rgba(255,255,255,0.04)}
+}
 @media (max-width:900px){
   .hero{grid-template-columns:1fr;gap:1.25rem;padding-bottom:var(--space-2)}
   .profile__photo{width:200px;height:200px}
