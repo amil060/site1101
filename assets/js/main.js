@@ -144,4 +144,24 @@ document.addEventListener('DOMContentLoaded', function () {
     activateTab(initial);
   }
 
+  // Project media: show image if it loads, otherwise show subtle fallback
+  const mediaImgs = document.querySelectorAll('.project__media__img');
+  mediaImgs.forEach(img => {
+    const container = img.closest('.project__media');
+    const fallback = container && container.querySelector('.project__media__fallback');
+    // pre-load
+    const tester = new Image();
+    tester.onload = () => {
+      if (container) container.classList.add('has-media');
+      if (fallback) fallback.setAttribute('aria-hidden', 'true');
+      img.style.display = '';
+    };
+    tester.onerror = () => {
+      img.style.display = 'none';
+      if (fallback) fallback.setAttribute('aria-hidden', 'false');
+      if (container) container.classList.remove('has-media');
+    };
+    tester.src = img.src;
+  });
+
 });

@@ -23,12 +23,15 @@ permalink: /projects/
         <li>Teamwork and collaborative debugging</li>
       </ul>
 
-      <div class="project__img project__img--placeholder" aria-hidden="true">
-        <img src="{{ site.baseurl }}/assets/images/profile-placeholder.svg" alt="Project screenshot placeholder" />
-        <div class="project__img__label">Project media will be added here</div>
-      </div> 
+      <div class="project__media" aria-hidden="false">
+        <img class="project__media__img" src="{{ site.baseurl }}/assets/images/project1-hardware.jpg" alt="Hardware project media" />
+        <div class="project__media__fallback" aria-hidden="true">Project media will be added here</div>
+      </div>
 
-      <p><a class="btn btn--ghost" href="https://youtu.be/jIThCIPn77s" target="_blank" rel="noopener">Watch demo video</a></p>
+      <div class="project__links">
+        <a class="btn btn--ghost" href="https://youtu.be/jIThCIPn77s" target="_blank" rel="noopener">YouTube demo</a>
+        <a class="btn btn--ghost" href="{{ site.repo_url }}" target="_blank" rel="noopener">GitHub repo</a>
+      </div>
     </div>
 
     <div id="panel-hour" role="tabpanel" aria-labelledby="tab-hour" class="tab-panel" tabindex="0" hidden>
@@ -40,13 +43,15 @@ permalink: /projects/
         <li>Event logistics, outreach, and documentation</li>
       </ul>
 
-      <div class="project__img project__img--placeholder" aria-hidden="true">
-        <div class="project__img__empty" aria-hidden="true">📷</div>
-        <div class="project__img__label">Project media will be added here</div>
-        <!-- future photos: add images to assets/images/ -->
-      </div> 
+      <div class="project__media" aria-hidden="false">
+        <img class="project__media__img" src="{{ site.baseurl }}/assets/images/project2-hour-of-code.jpg" alt="Hour of Code project media" />
+        <div class="project__media__fallback" aria-hidden="true">Project media will be added here</div>
+      </div>
 
-      <p><a class="btn btn--ghost" href="#" aria-disabled="true">Add photos here later</a></p>
+      <div class="project__links">
+        <a class="btn btn--ghost" href="#" aria-disabled="true">Photos (coming soon)</a>
+        <a class="btn btn--ghost" href="{{ site.repo_url }}" target="_blank" rel="noopener">GitHub repo</a>
+      </div>
     </div>
   </div>
 </section> 
