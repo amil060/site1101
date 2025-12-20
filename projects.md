@@ -15,7 +15,7 @@ permalink: /projects/
     </div>
 
     <div id="panel-hardware" role="tabpanel" aria-labelledby="tab-hardware" class="tab-panel is-visible" tabindex="0">
-      <article class="project-card surface">
+      <article class="project-card surface reveal">
         <div class="project-card__grid">
           <div class="project-card__content">
             <h3>How does hardware work?</h3>

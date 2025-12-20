@@ -25,9 +25,9 @@ title: Home
   </div>
 </section>
 
-<section class="about-preview section">
+<section class="about-preview section reveal">
   <div class="container">
-    <div class="surface">
+    <div class="surface reveal">
       <h2>About (Preview)</h2>
       <p class="text-muted">I’m a CS student at ADA University with interests in cybersecurity and applied AI — I build practical projects and teach/mentor where I can.</p>
       <a class="btn btn--ghost" href="{{ site.baseurl }}/about/">Read more</a>
@@ -35,12 +35,12 @@ title: Home
   </div>
 </section>
 
-<section class="featured-projects section">
+<section class="featured-projects section reveal">
   <div class="container">
-    <div class="surface">
+    <div class="surface reveal">
       <h2>Featured Projects</h2>
       <div class="featured-grid">
-        <article class="featured-card">
+        <article class="featured-card reveal">
           <div class="featured-thumb-wrap">
             <img class="featured-thumb" src="{{ site.baseurl }}/assets/images/project1-hardware.jpg" alt="Hardware thumbnail" />
           </div>
@@ -51,7 +51,7 @@ title: Home
           </div>
         </article>
 
-        <article class="featured-card">
+        <article class="featured-card reveal">
           <div class="featured-thumb-wrap">
             <img class="featured-thumb" src="{{ site.baseurl }}/assets/images/project2-hour-of-code.jpg" alt="Hour of Code thumbnail" />
           </div>

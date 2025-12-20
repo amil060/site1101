@@ -63,22 +63,42 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Scroll reveal (IntersectionObserver)
-  const reveals = document.querySelectorAll('.is-reveal');
-  if ('IntersectionObserver' in window && reveals.length) {
-    const obs = new IntersectionObserver((entries) => {
+  // Scroll reveal (IntersectionObserver) for .is-reveal (legacy)
+  const revealsLegacy = document.querySelectorAll('.is-reveal');
+  if ('IntersectionObserver' in window && revealsLegacy.length) {
+    const obsLegacy = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-revealed');
-          obs.unobserve(entry.target);
+          obsLegacy.unobserve(entry.target);
         }
       });
     }, { threshold: 0.12 });
 
-    reveals.forEach(el => obs.observe(el));
+    revealsLegacy.forEach(el => obsLegacy.observe(el));
   } else {
     // fallback
-    reveals.forEach(el => el.classList.add('is-revealed'));
+    revealsLegacy.forEach(el => el.classList.add('is-revealed'));
+  }
+
+  // Lightweight reveal for .reveal elements (new)
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced && 'IntersectionObserver' in window){
+    const toReveal = document.querySelectorAll('.reveal');
+    if (toReveal.length){
+      const rObs = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if (e.isIntersecting){
+            e.target.classList.add('revealed');
+            rObs.unobserve(e.target);
+          }
+        })
+      },{threshold:0.12});
+      toReveal.forEach(el=>rObs.observe(el));
+    }
+  } else {
+    // If reduced motion, reveal immediately without animation
+    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('revealed'));
   }
 
   // Active nav link highlighting on scroll
