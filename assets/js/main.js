@@ -1,5 +1,9 @@
 // Minimal, dependency-free JS for menu, scroll reveal, active nav, and dark mode
 
+// Mark that JS has successfully executed (added only if this script parses and runs)
+document.documentElement.classList.add('js');
+console.log('main.js loaded');
+
 document.addEventListener('DOMContentLoaded', function () {
   // Mobile nav toggle
   const navToggle = document.querySelector('.nav-toggle');
