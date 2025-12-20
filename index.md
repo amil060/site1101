@@ -5,7 +5,7 @@ title: Home
 
 <section class="hero">
   <div class="profile is-reveal">
-    <h1 class="profile__title">Hi — I’m Your Name</h1>
+    <h1 class="profile__title">Hi — I’m Amil Isgandarov</h1>
     <p class="profile__bio">A tech student building thoughtful, accessible interfaces. I focus on web performance, clean design, and delightful micro-interactions.</p>
 
     <div class="cta">
