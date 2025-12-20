@@ -34,21 +34,31 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Theme toggle with localStorage
+  // Theme toggle with localStorage + small icon button
   const themeToggle = document.querySelector('.theme-toggle');
   const htmlEl = document.documentElement;
   const stored = localStorage.getItem('theme');
+  const svgMoon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="currentColor"/></svg>';
+  const svgSun = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.76 4.84l-1.8-1.79L3.17 4.83l1.79 1.8 1.8-1.79zM1 13h3v-2H1v2zm10 8h2v-3h-2v3zM6.76 19.16l1.79 1.79 1.79-1.79-1.79-1.8-1.79 1.8zM20 11v2h3v-2h-3zM11 1h2v3h-2V1zm8.83 3.17l-1.79 1.79 1.79 1.8 1.8-1.79-1.8-1.8zM16.24 19.16l1.79-1.8-1.79-1.79-1.8 1.79 1.8 1.8zM12 7a5 5 0 100 10 5 5 0 000-10z" fill="currentColor"/></svg>';
+
   if (stored) {
     htmlEl.setAttribute('data-theme', stored);
-    // reflect state on the toggle button if present
-    if (themeToggle) themeToggle.setAttribute('aria-pressed', stored === 'dark');
+    if (themeToggle) {
+      themeToggle.setAttribute('aria-pressed', stored === 'dark');
+      themeToggle.innerHTML = stored === 'dark' ? svgSun : svgMoon;
+    }
+  } else {
+    // default icon
+    if (themeToggle) themeToggle.innerHTML = svgMoon;
   }
+
   if (themeToggle) {
     themeToggle.addEventListener('click', function () {
       const current = htmlEl.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
       const next = current === 'dark' ? 'light' : 'dark';
       htmlEl.setAttribute('data-theme', next);
       this.setAttribute('aria-pressed', next === 'dark');
+      this.innerHTML = next === 'dark' ? svgSun : svgMoon;
       localStorage.setItem('theme', next);
     });
   }
@@ -146,19 +156,33 @@ document.addEventListener('DOMContentLoaded', function () {
   mediaImgs.forEach(img => {
     const container = img.closest('.project__media');
     const fallback = container && container.querySelector('.project__media__fallback');
+
+    function showFallback(){
+      if (img) img.style.display = 'none';
+      if (fallback){ fallback.style.display = ''; fallback.setAttribute('aria-hidden', 'false'); }
+      if (container) container.classList.remove('has-media');
+    }
+
+    function showImage(){
+      if (container) container.classList.add('has-media');
+      if (fallback){ fallback.style.display = 'none'; fallback.setAttribute('aria-hidden', 'true'); }
+      if (img){ img.style.display = 'block'; }
+    }
+
+    // if the image is already loaded or cached
+    if (img.complete && img.naturalWidth > 0){
+      showImage();
+      return;
+    }
+
     // pre-load
     const tester = new Image();
-    tester.onload = () => {
-      if (container) container.classList.add('has-media');
-      if (fallback) fallback.setAttribute('aria-hidden', 'true');
-      img.style.display = '';
-    };
-    tester.onerror = () => {
-      img.style.display = 'none';
-      if (fallback) fallback.setAttribute('aria-hidden', 'false');
-      if (container) container.classList.remove('has-media');
-    };
+    tester.onload = () => { showImage(); };
+    tester.onerror = () => { showFallback(); };
     tester.src = img.src;
+
+    // safety: if the image element fails to render, ensure fallback shows
+    img.addEventListener('error', showFallback);
   });
 
 });

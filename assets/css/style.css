@@ -6,21 +6,26 @@
   --space-1: 0.5rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
-  --max-width: 1100px;
+  --max-width: 1180px;
   --container-pad: 1rem;
+
+  /* Typography */
+  --font-size-base: 17px;
+  --line-height-base: 1.6;
 
   --color-bg: #fafafa;
   --color-surface: #ffffff;
   --color-text: #0f1720;
+  --color-paragraph: #374151;
   --color-muted: #6b7280;
   --color-accent: #0066ff;
   --color-accent-2: #7b6bff;
 
   --radius: 14px;
   --radius-sm: 8px;
-  --elev-1: 0 10px 36px rgba(12,14,18,0.08);
+  --elev-1: 0 14px 48px rgba(12,14,18,0.09);
   --shadow: 0 6px 18px rgba(12,14,18,0.06);
-}
+} 
 
 :root[data-theme='dark']{
   --color-bg: #0b0f14;
@@ -34,7 +39,9 @@
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;font-size:16px;line-height:1.6;color:var(--color-text);background:var(--color-bg);background-image:var(--page-grad);margin:0;-webkit-font-smoothing:antialiased}
+body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;font-size:var(--font-size-base);line-height:var(--line-height-base);color:var(--color-text);background:var(--color-bg);background-image:var(--page-grad);margin:0;-webkit-font-smoothing:antialiased}
+
+p, .text-muted{color:var(--color-paragraph)}
 .container{max-width:var(--max-width);margin:0 auto;padding:var(--container-pad)}
 
 /* Header */
@@ -48,14 +55,52 @@ body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica
 
 .site-nav{display:block}
 .nav__list{display:flex;gap:var(--space-2);list-style:none;padding:0;margin:0}
-.nav__link{color:var(--color-muted);text-decoration:none;padding:calc(var(--space-1));border-radius:6px;transition:all .18s}
+.nav__link{color:var(--color-muted);text-decoration:none;padding:6px 8px;border-radius:8px;transition:color .18s, background .18s;font-size:0.95rem;font-weight:500;letter-spacing:0.01em}
 .nav__link:hover{color:var(--color-text);background:rgba(0,0,0,0.04)}
-.nav__link.is-active{color:var(--color-accent);font-weight:600}
+.nav__link.is-active{color:var(--color-accent);font-weight:600} 
 
 .header-actions{display:flex;align-items:center;gap:var(--space-2)}
-.btn{padding:8px 12px;border-radius:8px;border:0;background:var(--color-accent);color:white;text-decoration:none}
+.control-group{display:flex;align-items:center;gap:0.5rem}
+.control{display:inline-flex;align-items:center;gap:0.5rem;height:40px;padding:6px 12px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);background:transparent;color:var(--color-text);font-weight:600;text-decoration:none}
+.control:focus{outline:3px solid rgba(1,102,255,0.12);outline-offset:3px}
+.control--icon{width:40px;min-width:40px;justify-content:center;padding:6px;border-radius:10px}
+.control--link{padding:8px 12px}
+.btn{padding:8px 12px;border-radius:10px;border:0;background:var(--color-accent);color:white;text-decoration:none}
 .btn--ghost{background:transparent;color:var(--color-text);border:1px solid rgba(0,0,0,0.06)}
 .btn--icon{background:transparent;font-size:1.1rem;border:0}
+
+/* Featured content and page rhythm */
+.section{padding-block:clamp(56px,6vw,80px)}
+.about-preview .container{padding-top:var(--space-2)}
+.featured-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-2);margin-top:var(--space-2)}
+.featured-card{display:flex;gap:var(--space-2);align-items:flex-start;background:var(--color-surface);padding:var(--space-2);border-radius:var(--radius);box-shadow:var(--elev-1);border:1px solid rgba(0,0,0,0.04)}
+.thumb-small{width:84px;height:64px;object-fit:cover;border-radius:8px;border:1px solid rgba(0,0,0,0.04)}
+.featured-card__body h3{margin:0 0 var(--space-1) 0}
+.cta-strip{background:linear-gradient(90deg, rgba(0,0,0,0.02), rgba(255,255,255,0.01));padding:var(--space-2);border-radius:10px;margin-top:var(--space-3);border:1px solid rgba(0,0,0,0.03)}
+.cta-strip__inner{display:flex;justify-content:space-between;align-items:center;gap:var(--space-2)}
+
+/* Project media fallback & premium images */
+.project__media{display:flex;align-items:center;gap:var(--space-2);min-height:68px;margin-top:var(--space-2)}
+.project__media.has-media .project__media__fallback{display:none}
+.project__media__fallback[aria-hidden="true"]{display:none}
+.project__media__img{width:100%;height:100%;max-height:240px;border-radius:var(--radius-sm);object-fit:cover;border:1px solid rgba(0,0,0,0.05);box-shadow:var(--shadow)}
+
+/* Subtle background & improved rhythm */
+body{line-height:1.7;background-image:radial-gradient(ellipse at top left, rgba(6,30,60,0.02) 0%, rgba(0,0,0,0) 20%), radial-gradient(ellipse at bottom right, rgba(120,0,200,0.02) 0%, rgba(0,0,0,0) 20%)}
+@media (prefers-color-scheme: dark){
+  body{background-image:none}
+}
+
+/* Dark mode tweaks */
+:root[data-theme='dark']{--elev-1: 0 10px 36px rgba(0,0,0,0.6);--radius:14px}
+
+/* Slightly larger type rhythm */
+h1,h2,h3{line-height:1.25}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;scroll-behavior:auto !important}
+}
 
 /* Main */
 .main{padding:calc(var(--space-3) * 1.25) 0}
@@ -68,8 +113,8 @@ body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica
 
 /* Projects grid */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-2)}
-.card{background:var(--color-surface);padding:var(--space-2);border-radius:12px;box-shadow:var(--shadow);transition:transform .2s, box-shadow .2s}
-.card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(12,14,18,0.08)}
+.card{background:var(--color-surface);padding:var(--space-2);border-radius:var(--radius);box-shadow:var(--elev-1);transition:transform .24s, box-shadow .24s}
+.card:hover{transform:translateY(-6px);box-shadow:0 24px 68px rgba(12,14,18,0.12)} 
 .card__title{margin:0 0 .5rem 0}
 
 /* Projects tabs (segmented control) */
@@ -124,10 +169,10 @@ body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica
 .repo-link:focus{outline:2px solid rgba(1,102,255,0.12);outline-offset:3px}
 
 /* Typographic rhythm */
-h1{font-size:clamp(1.6rem,2.6rem,2.6rem);line-height:1.15;margin:0 0 var(--space-3)}
-h2{font-size:1.6rem;margin:0 0 var(--space-2)}
+h1{font-size:clamp(2rem,3vw,3rem);line-height:1.12;margin:0 0 var(--space-3)}
+h2{font-size:clamp(1.5rem,2vw,2rem);line-height:1.18;margin:0 0 var(--space-2)}
 h3{font-size:1.1rem;margin:0 0 var(--space-1)}
-p{margin:0 0 var(--space-2);color:var(--color-muted)}
+p{margin:0 0 var(--space-2);color:var(--color-paragraph)}
 a{color:var(--color-accent);text-decoration:none}
 a:hover{text-decoration:underline}
 
@@ -140,7 +185,7 @@ a:hover{text-decoration:underline}
 
 /* Page container and sections */
 .main{padding:calc(var(--space-4) * 0.6) 0}
-.section{padding:var(--space-2) 0}
+.section{padding-block:clamp(56px,6vw,80px)}
 
 /* Hero tweaks */
 .hero{display:grid;grid-template-columns:1fr 360px;gap:1.8rem;align-items:center}
