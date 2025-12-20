@@ -29,10 +29,12 @@
 } 
 
 :root[data-theme='dark']{
-  --color-bg: #0b0f14;
-  --color-surface: #07101a;
+  --color-bg: #051119;
+  --page-grad: linear-gradient(180deg,#041124 0%, #06121a 70%);
+  --color-surface: #07121a;
   --color-text: #e6eef6;
-  --color-muted: #9aa6b2;
+  --color-paragraph: #c3d0da;
+  --color-muted: #9fb0c2;
   --color-accent: #4da1ff;
   --color-accent-2: #6fb9ff;
   --elev-1: 0 10px 36px rgba(0,0,0,0.6);
@@ -127,7 +129,48 @@ body::before, .page-bg::before{content:'';position:fixed;inset:0;pointer-events:
 body > *{position:relative;z-index:1} 
 
 /* Dark mode tweaks */
-:root[data-theme='dark']{--elev-1: 0 10px 36px rgba(0,0,0,0.6);--radius:14px}
+:root[data-theme='dark']{
+  --color-bg: #051119;
+  --page-grad: linear-gradient(180deg,#041124 0%, #06121a 70%);
+  --color-surface: #07121a;
+  --color-text: #e6eef6;
+  --color-paragraph: #c3d0da;
+  --color-muted: #9fb0c2;
+  --color-accent: #4da1ff;
+  --color-accent-2: #6fb9ff;
+  --elev-1: 0 10px 36px rgba(0,0,0,0.6);
+  --card-shadow: 0 16px 60px rgba(0,0,0,0.6);
+  --surface-border: rgba(255,255,255,0.04);
+  --radius:14px;
+}
+
+/* Dark-mode surface and control overrides */
+:root[data-theme='dark'] .surface,
+:root[data-theme='dark'] .card,
+:root[data-theme='dark'] .featured-card,
+:root[data-theme='dark'] .project-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid var(--surface-border);
+  box-shadow:var(--card-shadow);
+}
+
+:root[data-theme='dark'] .project-media__img,
+:root[data-theme='dark'] .profile__photo{box-shadow:0 30px 90px rgba(0,0,0,0.6)}
+
+:root[data-theme='dark'] .nav__link:hover{background:rgba(255,255,255,0.03);color:var(--color-text)}
+:root[data-theme='dark'] .btn--ghost{color:var(--color-paragraph);border-color:var(--surface-border)}
+:root[data-theme='dark'] .control{border-color:var(--surface-border);}
+
+:root[data-theme='dark'] .site-footer,
+:root[data-theme='dark'] .site-footer a{color:var(--color-muted)}
+
+:root[data-theme='dark'] .lightbox-overlay{background:rgba(0,0,0,0.78)}
+:root[data-theme='dark'] .lightbox-close{background:rgba(255,255,255,0.04);color:var(--color-text);border:1px solid rgba(255,255,255,0.03)}
+
+:root[data-theme='dark'] body::before, :root[data-theme='dark'] .page-bg::before{opacity:0.03}
+
+/* Ensure headings remain highly legible in dark mode */
+:root[data-theme='dark'] h1, :root[data-theme='dark'] h2, :root[data-theme='dark'] h3{color:var(--color-text)}
 
 /* Slightly larger type rhythm */
 h1,h2,h3{line-height:1.18}
