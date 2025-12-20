@@ -44,7 +44,7 @@ permalink: /projects/
 
           <div class="project-card__media">
             <div class="project-media">
-              <img class="project-media__img" src="{{ site.baseurl }}/assets/images/project1-hardware.jpg" alt="Hardware project preview" />
+              <img class="project-media__img lightbox-trigger" src="{{ site.baseurl }}/assets/images/project1-hardware.jpg" alt="Hardware project preview" role="button" tabindex="0" data-full-src="{{ site.baseurl }}/assets/images/project1-hardware.jpg" />
               <div class="project-media__fallback" aria-hidden="true">Project media will be added here</div>
               <div class="project-media__caption">Lab setup — logic gates (placeholder)</div>
             </div>
@@ -76,6 +76,7 @@ permalink: /projects/
             <p class="project__outcome"><strong>Outcome:</strong> Successfully delivered an inclusive STEM workshop and produced materials for future replication.</p>
 
             <div class="project__links">
+              <a class="btn btn--primary" href="https://youtu.be/eCtVs1DDd0U" target="_blank" rel="noopener">YouTube demo</a>
               <span class="btn btn--ghost" aria-disabled="true">Photos (coming soon)</span>
               <a class="btn btn--ghost" href="{{ site.repo_url }}" target="_blank" rel="noopener">GitHub repo</a>
             </div>
@@ -83,7 +84,7 @@ permalink: /projects/
 
           <div class="project-card__media">
             <div class="project-media">
-              <img class="project-media__img" src="{{ site.baseurl }}/assets/images/project2-hour-of-code.jpg" alt="Hour of Code preview" />
+              <img class="project-media__img lightbox-trigger" src="{{ site.baseurl }}/assets/images/project2-hour-of-code.jpg" alt="Hour of Code preview" role="button" tabindex="0" data-full-src="{{ site.baseurl }}/assets/images/project2-hour-of-code.jpg" />
               <div class="project-media__fallback" aria-hidden="true">Project media will be added here</div>
               <div class="project-media__caption">Community workshop — placeholder</div>
             </div>

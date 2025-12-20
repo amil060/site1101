@@ -209,4 +209,77 @@ document.addEventListener('DOMContentLoaded', function () {
     img.addEventListener('error', showFallback);
   });
 
+  // Accessible lightbox for project images (click to zoom)
+  (function(){
+    const triggers = document.querySelectorAll('.project-media__img.lightbox-trigger');
+    if (!triggers.length) return;
+    const lightboxPrefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let lastActive = null;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'lightbox-overlay';
+    overlay.setAttribute('aria-hidden','true');
+    overlay.innerHTML = '<div class="lightbox-container" role="dialog" aria-modal="true"></div>';
+    document.body.appendChild(overlay);
+    const container = overlay.querySelector('.lightbox-container');
+
+    function openLightbox(src, alt, trigger){
+      lastActive = trigger || document.activeElement;
+      container.innerHTML = '';
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = alt || '';
+      img.className = 'lightbox-image';
+      img.setAttribute('tabindex','-1');
+      container.appendChild(img);
+
+      const btn = document.createElement('button');
+      btn.className = 'lightbox-close';
+      btn.setAttribute('aria-label','Close image');
+      btn.innerHTML = 'Close';
+      btn.addEventListener('click', closeLightbox);
+      overlay.appendChild(btn);
+
+      overlay.setAttribute('aria-hidden','false');
+      // focus management
+      btn.focus();
+      document.addEventListener('keydown', onKeyDown);
+      overlay.addEventListener('click', onOverlayClick);
+    }
+
+    function closeLightbox(){
+      overlay.setAttribute('aria-hidden','true');
+      container.innerHTML = '';
+      const btn = overlay.querySelector('.lightbox-close');
+      if (btn) btn.remove();
+      document.removeEventListener('keydown', onKeyDown);
+      overlay.removeEventListener('click', onOverlayClick);
+      if (lastActive && typeof lastActive.focus === 'function') lastActive.focus();
+      lastActive = null;
+    }
+
+    function onKeyDown(e){
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'Tab'){
+        const focusables = overlay.querySelectorAll('button, [href], input, textarea, [tabindex]:not([tabindex="-1"])');
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+      }
+    }
+
+    function onOverlayClick(e){
+      if (e.target === overlay) closeLightbox();
+    }
+
+    triggers.forEach(t => {
+      t.setAttribute('role','button');
+      t.setAttribute('tabindex','0');
+      t.addEventListener('click', (e)=>{ e.preventDefault(); openLightbox(t.dataset.fullSrc || t.src, t.alt, t); });
+      t.addEventListener('keydown', (e)=>{ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(t.dataset.fullSrc || t.src, t.alt, t); } });
+    });
+  })();
+
 });
