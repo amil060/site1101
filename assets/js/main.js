@@ -4,17 +4,45 @@ document.addEventListener('DOMContentLoaded', function () {
   // Mobile nav toggle
   const navToggle = document.querySelector('.nav-toggle');
   const nav = document.getElementById('site-nav');
-  navToggle && navToggle.addEventListener('click', function () {
-    const expanded = this.getAttribute('aria-expanded') === 'true';
-    this.setAttribute('aria-expanded', String(!expanded));
-    nav.classList.toggle('is-open');
-  });
+  if (navToggle && nav) {
+    navToggle.addEventListener('click', function () {
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', String(!expanded));
+      nav.classList.toggle('is-open');
+      // If opened, move focus to first nav link for keyboard users
+      if (nav.classList.contains('is-open')) {
+        const firstLink = nav.querySelector('.nav__link');
+        firstLink && firstLink.focus();
+      }
+    });
+
+    // Close nav when a link is clicked (useful for single-page anchors / small screens)
+    nav.querySelectorAll('.nav__link').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close nav on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+        nav.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.focus();
+      }
+    });
+  }
 
   // Theme toggle with localStorage
   const themeToggle = document.querySelector('.theme-toggle');
   const htmlEl = document.documentElement;
   const stored = localStorage.getItem('theme');
-  if (stored) htmlEl.setAttribute('data-theme', stored);
+  if (stored) {
+    htmlEl.setAttribute('data-theme', stored);
+    // reflect state on the toggle button if present
+    if (themeToggle) themeToggle.setAttribute('aria-pressed', stored === 'dark');
+  }
   if (themeToggle) {
     themeToggle.addEventListener('click', function () {
       const current = htmlEl.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
