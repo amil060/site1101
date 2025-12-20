@@ -6,7 +6,7 @@ permalink: /contact/
 
 <section class="section is-reveal" id="contact">
   <h2>Contact</h2>
-  <p class="text-muted">Email available upon request</p>
+  <p class="text-muted">Email: available upon request</p>
   <p class="text-muted">Connect on GitHub or Codecademy — links are in the footer.</p>
 
   <form class="contact-form" onsubmit="alert('This is a front-end demo form — wire up a server or service to handle submissions.');return false;">

@@ -23,9 +23,10 @@ permalink: /projects/
         <li>Teamwork and collaborative debugging</li>
       </ul>
 
-      <div class="project__img" aria-hidden="true">
-        <img src="{{ site.baseurl }}/assets/images/profile-placeholder.svg" alt="Project screenshot placeholder" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"/>
-      </div>
+      <div class="project__img project__img--placeholder" aria-hidden="true">
+        <img src="{{ site.baseurl }}/assets/images/profile-placeholder.svg" alt="Project screenshot placeholder" />
+        <div class="project__img__label">Project media will be added here</div>
+      </div> 
 
       <p><a class="btn btn--ghost" href="https://youtu.be/jIThCIPn77s" target="_blank" rel="noopener">Watch demo video</a></p>
     </div>
@@ -39,10 +40,11 @@ permalink: /projects/
         <li>Event logistics, outreach, and documentation</li>
       </ul>
 
-      <div class="project__img" aria-hidden="true">
-        <!-- image placeholder -->
+      <div class="project__img project__img--placeholder" aria-hidden="true">
+        <div class="project__img__empty" aria-hidden="true">📷</div>
+        <div class="project__img__label">Project media will be added here</div>
         <!-- future photos: add images to assets/images/ -->
-      </div>
+      </div> 
 
       <p><a class="btn btn--ghost" href="#" aria-disabled="true">Add photos here later</a></p>
     </div>

@@ -74,11 +74,15 @@ body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica
 .tab-panel{margin-top:var(--space-2);background:var(--color-surface);padding:var(--space-2);border-radius:10px;box-shadow:var(--shadow);opacity:0;transform:translateY(-6px);transition:opacity .28s ease, transform .28s ease}
 .tab-panel.is-visible{opacity:1;transform:none}
 .tab-panel[hidden]{display:none}
-.project__img{min-height:120px;background:linear-gradient(135deg,var(--color-accent),#9b6bff);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;margin-top:var(--space-2);overflow:hidden}
+.project__img{min-height:84px;background:linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.01));border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--color-muted);margin-top:var(--space-2);overflow:hidden;border:1px dashed rgba(0,0,0,0.04);padding:8px}
+.project__img img{max-width:100%;max-height:64px;opacity:0.92;border-radius:6px}
+.project__img__label{font-size:.85rem;color:var(--color-muted);margin-top:0.5rem;text-align:center}
+.project__img__empty{font-size:1.4rem;opacity:0.45}
 .project__tech{margin:var(--space-2) 0 0 0;padding-left:1rem}
 .project__tech li{margin-bottom:0.25rem}
 @media (max-width:900px){
-  .project__img{min-height:80px}
+  .project__img{min-height:64px}
+  .project__img img{max-height:48px}
 }
 
 /* Contact form improvements */
