@@ -1,4 +1,4 @@
-[![Jekyll build](https://github.com/USERNAME/site1101/actions/workflows/jekyll.yml/badge.svg)](https://github.com/USERNAME/site1101/actions/workflows/jekyll.yml)
+[![Jekyll build](https://github.com/amil060/site1101/actions/workflows/jekyll.yml/badge.svg)](https://github.com/amil060/site1101/actions/workflows/jekyll.yml)
 
 # site1101
 
@@ -34,7 +34,7 @@ bundle exec jekyll serve --host 0.0.0.0
 
 ## Deployment
 1. Push the repository to GitHub and update `_config.yml` `url`, `baseurl`, and `repo_url` with your settings (replace `USERNAME`).
-2. Enable GitHub Pages in repository settings (select branch `main` and folder `/ (root)` or use the Pages builder). The site will be available at `https://USERNAME.github.io/site1101/`.
+2. Enable GitHub Pages in repository settings (select branch `main` and folder `/ (root)` or use the Pages builder). The site will be available at `https://amil060.github.io/site1101/`.
 
 ## Notes
 - Replace `USERNAME` in the badge and `_config.yml` with your GitHub username.
