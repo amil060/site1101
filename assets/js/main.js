@@ -94,6 +94,16 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         })
       },{threshold:0.08, rootMargin: '0px 0px -8% 0px'});
+      toReveal.forEach(el=>rObs.observe(el));
+    }
+  } else {
+    // If reduced motion, reveal immediately without animation
+    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('revealed'));
+  }
+
+  // Active nav link highlighting on scroll
+  const sections = document.querySelectorAll('main .section, main .hero, main .projects');
+  const navLinks = document.querySelectorAll('.nav__link');
   if ('IntersectionObserver' in window && sections.length) {
     const sectionObs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
