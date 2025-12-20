@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Projects
+permalink: /projects/
 ---
 
 <section class="projects is-reveal" id="projects">
@@ -26,4 +27,4 @@ title: Projects
       <p class="text-muted">Additional course and personal projects will be added here. See the repository for code and documentation.</p>
     </article>
   </div>
-</section>
+</section> 
