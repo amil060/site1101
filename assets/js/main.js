@@ -89,40 +89,59 @@ document.addEventListener('DOMContentLoaded', function () {
     sections.forEach(s => sectionObs.observe(s));
   }
 
-  // Smoothly animate <details> based project accordions
-  const projectDetails = document.querySelectorAll('details.project');
-  projectDetails.forEach(d => {
-    const content = d.querySelector('.project__content');
-    if (!content) return;
-    // initialize
-    if (d.open) {
-      content.style.maxHeight = content.scrollHeight + 'px';
-      content.style.opacity = '1';
-      content.style.transform = 'none';
-    } else {
-      content.style.maxHeight = '0px';
-      content.style.opacity = '0';
-      content.style.transform = 'translateY(-6px)';
+  // Projects tabbed interface (accessible, keyboard-controlled)
+  const projectsTabs = document.querySelector('.projects-tabs');
+  if (projectsTabs) {
+    const tabs = projectsTabs.querySelectorAll('[role="tab"]');
+    const panels = projectsTabs.querySelectorAll('[role="tabpanel"]');
+
+    function activateTab(tab) {
+      tabs.forEach(t => {
+        const selected = t === tab;
+        t.setAttribute('aria-selected', selected ? 'true' : 'false');
+        t.tabIndex = selected ? 0 : -1;
+      });
+      panels.forEach(p => {
+        const panelId = tab.getAttribute('aria-controls');
+        if (p.id === panelId) {
+          p.hidden = false;
+          p.classList.add('is-visible');
+        } else {
+          p.hidden = true;
+          p.classList.remove('is-visible');
+        }
+      });
+      tab.focus();
     }
 
-    d.addEventListener('toggle', () => {
-      if (d.open) {
-        // expand
-        content.style.maxHeight = content.scrollHeight + 'px';
-        content.style.opacity = '1';
-        content.style.transform = 'none';
-        // after transition, allow auto height
-        setTimeout(() => { content.style.maxHeight = 'none'; }, 300);
-      } else {
-        // collapse: set to current height then to 0 for smooth effect
-        content.style.maxHeight = content.scrollHeight + 'px';
-        // force reflow
-        void content.offsetHeight;
-        content.style.maxHeight = '0px';
-        content.style.opacity = '0';
-        content.style.transform = 'translateY(-6px)';
-      }
+    tabs.forEach(t => {
+      t.addEventListener('click', () => activateTab(t));
+      t.addEventListener('keydown', (e) => {
+        const key = e.key;
+        const nodeList = Array.prototype.slice.call(tabs);
+        const idx = nodeList.indexOf(t);
+        if (key === 'ArrowRight' || key === 'ArrowLeft') {
+          e.preventDefault();
+          const dir = key === 'ArrowRight' ? 1 : -1;
+          const next = nodeList[(idx + dir + nodeList.length) % nodeList.length];
+          next.focus();
+          activateTab(next);
+        } else if (key === 'Home') {
+          e.preventDefault();
+          activateTab(nodeList[0]);
+        } else if (key === 'End') {
+          e.preventDefault();
+          activateTab(nodeList[nodeList.length - 1]);
+        } else if (key === 'Enter' || key === ' ') {
+          e.preventDefault();
+          activateTab(t);
+        }
+      });
     });
-  });
+
+    // initialize: activate first tab or the one marked selected
+    const initial = projectsTabs.querySelector('[aria-selected="true"]') || tabs[0];
+    activateTab(initial);
+  }
 
 });
