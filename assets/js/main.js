@@ -152,10 +152,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Project media: show image if it loads, otherwise show subtle fallback
-  const mediaImgs = document.querySelectorAll('.project__media__img');
+  const mediaImgs = document.querySelectorAll('.project__media__img, .project-media__img');
   mediaImgs.forEach(img => {
-    const container = img.closest('.project__media');
-    const fallback = container && container.querySelector('.project__media__fallback');
+    const container = img.closest('.project__media') || img.closest('.project-media');
+    const fallback = container && container.querySelector('.project__media__fallback, .project-media__fallback');
 
     function showFallback(){
       if (img) img.style.display = 'none';
