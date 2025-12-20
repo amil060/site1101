@@ -1,0 +1,12 @@
+title: "Portfolio — Your Name"
+email: "you@example.com"
+description: "A modern, clean portfolio site built with Jekyll"
+baseurl: "/site1101" # change to your repo name; set to '' for user/org pages
+url: "https://USERNAME.github.io" # change to your GitHub Pages URL
+repo_url: "https://github.com/USERNAME/site1101" # update with your repo
+markdown: kramdown
+exclude:
+  - "node_modules"
+  - "vendor"
+
+# Note: If you want to run locally with GitHub Pages exact gem set, use the `github-pages` gem in your Gemfile.

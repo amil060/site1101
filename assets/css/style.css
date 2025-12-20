@@ -1,0 +1,91 @@
+/* Assets: assets/css/style.css
+   Simple, modern styles using BEM-like classes
+*/
+
+:root{
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --max-width: 1100px;
+
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --color-text: #0f1720;
+  --color-muted: #6b7280;
+  --color-accent: #0066ff;
+  --shadow: 0 6px 18px rgba(12,14,18,0.06);
+}
+
+:root[data-theme='dark']{
+  --color-bg: #0b0f14;
+  --color-surface: #07101a;
+  --color-text: #e6eef6;
+  --color-muted: #9aa6b2;
+  --color-accent: #4da1ff;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;line-height:1.5;color:var(--color-text);background:var(--color-bg);margin:0}
+.container{max-width:var(--max-width);margin:0 auto;padding:calc(var(--space-2) * 1.5)}
+
+/* Header */
+.site-header{background:transparent;padding:var(--space-2) 0;position:sticky;top:0;z-index:50;backdrop-filter: blur(4px)}
+.site-header__inner{display:flex;align-items:center;gap:1rem;justify-content:space-between}
+.brand{font-weight:700;color:var(--color-text);text-decoration:none}
+.nav-toggle{display:none;background:none;border:0;padding:8px}
+.nav-toggle__bars{display:inline-block;width:28px;height:2px;background:var(--color-text);position:relative}
+.nav-toggle__bars::after{content:'';position:absolute;left:0;top:-8px;width:100%;height:2px;background:var(--color-text)}
+.nav-toggle__bars::before{content:'';position:absolute;left:0;top:8px;width:100%;height:2px;background:var(--color-text)}
+
+.site-nav{display:block}
+.nav__list{display:flex;gap:var(--space-2);list-style:none;padding:0;margin:0}
+.nav__link{color:var(--color-muted);text-decoration:none;padding:calc(var(--space-1));border-radius:6px;transition:all .18s}
+.nav__link:hover{color:var(--color-text);background:rgba(0,0,0,0.04)}
+.nav__link.is-active{color:var(--color-accent);font-weight:600}
+
+.header-actions{display:flex;align-items:center;gap:var(--space-2)}
+.btn{padding:8px 12px;border-radius:8px;border:0;background:var(--color-accent);color:white;text-decoration:none}
+.btn--ghost{background:transparent;color:var(--color-text);border:1px solid rgba(0,0,0,0.06)}
+.btn--icon{background:transparent;font-size:1.1rem;border:0}
+
+/* Main */
+.main{padding:calc(var(--space-3) * 1.25) 0}
+.hero{display:grid;grid-template-columns:1fr 360px;gap:2rem;align-items:center}
+.profile{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-2)}
+.profile__img{width:320px;height:320px;border-radius:14px;background:linear-gradient(135deg,var(--color-accent),#9b6bff);display:flex;align-items:center;justify-content:center;color:white}
+.profile__title{font-weight:700;font-size: clamp(1.6rem, 3vw, 2rem);margin:0}
+.profile__bio{color:var(--color-muted);max-width:40ch}
+.cta{display:flex;gap:var(--space-2);margin-top:var(--space-2)}
+
+/* Projects grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-2)}
+.card{background:var(--color-surface);padding:var(--space-2);border-radius:12px;box-shadow:var(--shadow);transition:transform .2s, box-shadow .2s}
+.card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(12,14,18,0.08)}
+.card__title{margin:0 0 .5rem 0}
+
+/* Footer */
+.site-footer{padding:var(--space-2) 0;border-top:1px solid rgba(0,0,0,0.04);margin-top:var(--space-3)}
+.site-footer__inner{display:flex;justify-content:space-between;align-items:center;gap:var(--space-2)}
+.social__link{color:var(--color-muted);text-decoration:none;margin-right:0.5rem}
+.footer-meta{display:flex;gap:1rem;align-items:center}
+.repo-link{text-decoration:none;color:var(--color-muted)}
+
+/* Reveal animation */
+.is-reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease, transform .6s ease}
+.is-reveal.is-revealed{opacity:1;transform:none}
+
+/* Utilities */
+.text-muted{color:var(--color-muted)}
+
+/* Responsive */
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;}
+  .profile__img{width:220px;height:220px}
+}
+@media (max-width:720px){
+  .nav-toggle{display:inline-block}
+  .site-nav{position:absolute;top:64px;right:16px;background:var(--color-surface);padding:12px;border-radius:10px;box-shadow:var(--shadow);display:none}
+  .site-nav.is-open{display:block}
+  .nav__list{flex-direction:column}
+}

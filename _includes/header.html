@@ -1,0 +1,23 @@
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="{{ site.baseurl }}/">{{ site.title }}</a>
+
+    <button class="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="nav-toggle__bars" aria-hidden="true"></span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" role="navigation">
+      <ul class="nav__list">
+        <li><a class="nav__link {% if page.url == '/' %}is-active{% endif %}" href="{{ site.baseurl }}/">Home</a></li>
+        <li><a class="nav__link {% if page.url contains '/about' %}is-active{% endif %}" href="{{ site.baseurl }}/about/">About</a></li>
+        <li><a class="nav__link {% if page.url contains '/projects' %}is-active{% endif %}" href="{{ site.baseurl }}/projects/">Projects</a></li>
+        <li><a class="nav__link {% if page.url contains '/contact' %}is-active{% endif %}" href="{{ site.baseurl }}/contact/">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn btn--icon theme-toggle" aria-pressed="false" aria-label="Toggle dark mode">🌙</button>
+      <a class="btn btn--ghost" href="{{ site.repo_url }}" target="_blank" rel="noopener">View source</a>
+    </div>
+  </div>
+</header>
