@@ -89,4 +89,40 @@ document.addEventListener('DOMContentLoaded', function () {
     sections.forEach(s => sectionObs.observe(s));
   }
 
+  // Smoothly animate <details> based project accordions
+  const projectDetails = document.querySelectorAll('details.project');
+  projectDetails.forEach(d => {
+    const content = d.querySelector('.project__content');
+    if (!content) return;
+    // initialize
+    if (d.open) {
+      content.style.maxHeight = content.scrollHeight + 'px';
+      content.style.opacity = '1';
+      content.style.transform = 'none';
+    } else {
+      content.style.maxHeight = '0px';
+      content.style.opacity = '0';
+      content.style.transform = 'translateY(-6px)';
+    }
+
+    d.addEventListener('toggle', () => {
+      if (d.open) {
+        // expand
+        content.style.maxHeight = content.scrollHeight + 'px';
+        content.style.opacity = '1';
+        content.style.transform = 'none';
+        // after transition, allow auto height
+        setTimeout(() => { content.style.maxHeight = 'none'; }, 300);
+      } else {
+        // collapse: set to current height then to 0 for smooth effect
+        content.style.maxHeight = content.scrollHeight + 'px';
+        // force reflow
+        void content.offsetHeight;
+        content.style.maxHeight = '0px';
+        content.style.opacity = '0';
+        content.style.transform = 'translateY(-6px)';
+      }
+    });
+  });
+
 });
