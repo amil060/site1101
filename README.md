@@ -1,45 +1,54 @@
-[![Jekyll build](https://github.com/amil060/site1101/actions/workflows/jekyll.yml/badge.svg)](https://github.com/amil060/site1101/actions/workflows/jekyll.yml)
+# Amil Isgandarov
 
-# site1101
+A personal portfolio website built with Jekyll and hosted on GitHub Pages. This repository contains the site source, styles, and small JavaScript enhancements for a polished, accessible presentation.
 
-A clean, responsive Jekyll portfolio template intended for GitHub Pages — suitable for a tech-student portfolio.
+---## Live
+- Live site: https://amil060.github.io/site1101/
+- Codecademy: https://www.codecademy.com/profiles/amil060
 
----
-
-## Project
-A minimal, accessible portfolio built with Jekyll to showcase projects, academic work, and community outreach.
-
-## Tech Stack
-- Jekyll (Liquid templates)
-- HTML, CSS, vanilla JavaScript
-- GitHub Pages (hosting)
+## Tech stack
+- Jekyll
+- HTML, CSS
+- Vanilla JavaScript
+- GitHub Pages
+- GitHub Actions (CI)
 
 ## Features
-- Responsive, mobile-first layout
-- Dark mode with persisted preference (localStorage)
-- Lightweight scroll-reveal and active navigation highlights
-- Accessible mobile menu (aria attributes)
-- CI build check (GitHub Actions runs `bundle exec jekyll build`)
+- Tech-premium UI design with subtle texture and elevation
+- Light / Dark mode with persisted preference
+- Responsive, mobile-friendly layout
+- Accessible navigation (keyboard and ARIA-friendly)
+- Projects section with image lightbox
+- Tabs and project links (YouTube demos)
 
-## Local Development
-1. Install Ruby and Bundler.
-2. From the project root:
+## Projects
+- **Project 1 — How does hardware work?**
+  - Demonstrates logic gates: NOT, AND, OR, NOR, XOR
+  - YouTube demo: https://youtu.be/jIThCIPn77s
+
+- **Project 2 — Hour of Code (SITE 1101 / Hour of AI)**
+  - Outreach teaching project
+  - YouTube demo: https://youtu.be/eCtVs1DDd0U
+
+## Run locally
+Requirements: Ruby and Bundler
+
+From the project root:
 
 ```bash
 bundle install
-bundle exec jekyll serve --host 0.0.0.0
+bundle exec jekyll serve
 ```
 
-3. Open `http://localhost:4000/site1101/` (or `http://localhost:4000/` if you set `baseurl: ''` in `_config.yml`).
+Open the appropriate local URL (e.g., `http://localhost:4000/site1101/`), or `http://localhost:4000/` if `baseurl` is set to an empty string in `_config.yml`.
 
-## Deployment
-1. Push the repository to GitHub and update `_config.yml` `url`, `baseurl`, and `repo_url` with your settings (replace `USERNAME`).
-2. Enable GitHub Pages in repository settings (select branch `main` and folder `/ (root)` or use the Pages builder). The site will be available at `https://amil060.github.io/site1101/`.
+## Repository structure
+- `_layouts` — Jekyll layouts (page templates)
+- `_includes` — reusable partials (header, footer, etc.)
+- `assets` — CSS, JavaScript, images
+- `pages` / top-level markdown pages — site content (index, projects, contact)
 
-## Notes
-- Replace `USERNAME` in the badge and `_config.yml` with your GitHub username.
-- Replace the placeholder image at `assets/images/profile-placeholder.svg` with your photo.
-
-## Suggested commit message
-`chore: polish README and add CI badge`
+## Contact
+- Email: amilisgndrov1@gmail.com
+- Codecademy: https://www.codecademy.com/profiles/amil060
 
