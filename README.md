@@ -2,18 +2,18 @@
 
 A personal portfolio website built with Jekyll and hosted on GitHub Pages. This repository contains the site source, styles, and small JavaScript enhancements for a polished, accessible presentation.
 
-## Live
+### Live
 - Live site: https://amil060.github.io/site1101/
 - Codecademy: https://www.codecademy.com/profiles/amil060
 
-## Tech stack
+### Tech stack
 - Jekyll
 - HTML, CSS
 - Vanilla JavaScript
 - GitHub Pages
 - GitHub Actions (CI)
 
-## Features
+### Features
 - Tech-premium UI design with subtle texture and elevation
 - Light / Dark mode with persisted preference
 - Responsive, mobile-friendly layout
@@ -21,7 +21,7 @@ A personal portfolio website built with Jekyll and hosted on GitHub Pages. This 
 - Projects section with image lightbox
 - Tabs and project links (YouTube demos)
 
-## Projects
+### Projects
 - **Project 1 — How does hardware work?**
   - Demonstrates logic gates: NOT, AND, OR, NOR, XOR
   - YouTube demo: https://youtu.be/jIThCIPn77s
@@ -30,7 +30,7 @@ A personal portfolio website built with Jekyll and hosted on GitHub Pages. This 
   - Outreach teaching project
   - YouTube demo: https://youtu.be/eCtVs1DDd0U
 
-## Run locally
+### Run locally
 Requirements: Ruby and Bundler
 
 From the project root:
@@ -42,13 +42,13 @@ bundle exec jekyll serve
 
 Open the appropriate local URL (e.g., `http://localhost:4000/site1101/`), or `http://localhost:4000/` if `baseurl` is set to an empty string in `_config.yml`.
 
-## Repository structure
+### Repository structure
 - `_layouts` — Jekyll layouts (page templates)
 - `_includes` — reusable partials (header, footer, etc.)
 - `assets` — CSS, JavaScript, images
 - `pages` / top-level markdown pages — site content (index, projects, contact)
 
-## Contact
+### Contact
 - Email: amilisgndrov1@gmail.com
 - Codecademy: https://www.codecademy.com/profiles/amil060
 
