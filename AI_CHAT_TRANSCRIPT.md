@@ -4119,7 +4119,5 @@ Summary of changes:
 - Added concise description, live links, tech stack, features, projects (with YouTube demos), run-locally instructions, repository structure, and contact info
 - Tone is professional and concise, per your requirements
 
-If you'd like, I can also add a CI badge or tweak wording for brevity—tell me which option you prefer.
 
-Made changes.
 

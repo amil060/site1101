@@ -2,7 +2,7 @@
 
 A personal portfolio website built with Jekyll and hosted on GitHub Pages. This repository contains the site source, styles, and small JavaScript enhancements for a polished, accessible presentation.
 
----## Live
+## Live
 - Live site: https://amil060.github.io/site1101/
 - Codecademy: https://www.codecademy.com/profiles/amil060
 
